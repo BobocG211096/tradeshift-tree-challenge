@@ -38,8 +38,14 @@ public class NodeRepositoryInMemoryImplementationTest {
                 .findAny()
                 .orElseThrow(NoSuchElementException::new);
 
+        Node root = tree.stream()
+                .filter(node -> node.getIdentification().equals("root"))
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+
         assertEquals(nodeC.getHeight(),  valueOf(1));
         assertEquals(nodeC.getParent().getIdentification(), "root");
+        assertEquals(root.getChildren().get(0).getIdentification(), "c");
     }
 
     private void createTree() {

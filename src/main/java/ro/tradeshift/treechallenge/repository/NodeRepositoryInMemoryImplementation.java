@@ -3,9 +3,9 @@ package ro.tradeshift.treechallenge.repository;
 import org.springframework.stereotype.Repository;
 import ro.tradeshift.treechallenge.model.Node;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+
+import static java.util.Collections.singletonList;
 
 @Repository
 public class NodeRepositoryInMemoryImplementation implements NodeRepository {
@@ -31,6 +31,7 @@ public class NodeRepositoryInMemoryImplementation implements NodeRepository {
         }
 
         node.setParent(parentNode);
+        parentNode.setChildren(singletonList(node));
     }
 
     public List<Node> getTree() {
